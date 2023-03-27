@@ -1,3 +1,5 @@
+import time
+
 from .tracing_handler import TracedRequestHandler
 
 
@@ -12,11 +14,17 @@ class FibonacciHandler(TracedRequestHandler):
 
     def fibonacci(self, n):
         with self._tracer.start_as_current_span("Factorial calculation"):
-            fib = [0, 1]
-            for i in range(2, n):
-                fib.append(fib[i - 1] + fib[i - 2])
+            if n in self.cache:
+                result = self.cache[n]
+            else:
+                time.sleep(2)
+                result = [0, 1]
+                for i in range(2, n):
+                    result.append(result[i - 1] + result[i - 2])
 
-            return fib
+                self.cache[n] = result
+
+            return result
 
     @staticmethod
     def format_input(n):

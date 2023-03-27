@@ -1,3 +1,5 @@
+import time
+
 from .tracing_handler import TracedRequestHandler
 
 
@@ -14,9 +16,15 @@ class FactorialHandler(TracedRequestHandler):
 
     def factorial(self, n):
         with self._tracer.start_as_current_span("Factorial calculation"):
-            result = 1
-            for i in range(1, n + 1):
-                result *= i
+            if n in self.cache:
+                result = self.cache[n]
+            else:
+                time.sleep(2)
+                result = 1
+                for i in range(1, n + 1):
+                    result *= i
+
+                self.cache[n] = result
             return result
 
     @staticmethod

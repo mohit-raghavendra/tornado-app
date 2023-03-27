@@ -13,8 +13,7 @@ from handlers.start_handler import StartHandler
 from utils.span_exporter import PrintSpanExporter
 
 trace.set_tracer_provider(TracerProvider())
-trace.get_tracer_provider().add_span_processor(
-    SimpleSpanProcessor(PrintSpanExporter()))
+trace.get_tracer_provider().add_span_processor(SimpleSpanProcessor(PrintSpanExporter()))
 
 
 def make_app():
