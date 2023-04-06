@@ -4,17 +4,17 @@ from .tracing_handler import TracedRequestHandler
 
 
 class FactorialHandler(TracedRequestHandler):
-    def get(self):
+    async def get(self):
         with self._tracer.start_as_current_span("/factorial get call") as span:
             input = self.get_argument("query")
 
-            n = FactorialHandler.format_input(input)
-            result = self.factorial(n)
+            n = yield FactorialHandler.format_input(input)
+            result = yield self.factorial(n)
 
             span.set_attribute("factorial.output", result)
             self.render("../html/factorial.html", n=n, result=result)
 
-    def post(self):
+    async def post(self):
         with self._tracer.start_as_current_span("/factorial post call") as span:
             input = self.get_argument("query", "no data received")
 
