@@ -12,6 +12,14 @@ class FibonacciHandler(TracedRequestHandler):
 
             self.render("../html/fibonacci.html", n=n, result=result)
 
+    def post(self):
+        with self._tracer.start_as_current_span("/factorial post request"):
+            input = self.get_argument("query", "No data provided")
+            n = FibonacciHandler.format_input(input)
+            result = ", ".join(map(str, self.fibonacci(n)))
+
+            self.write(str(result))
+
     def fibonacci(self, n):
         with self._tracer.start_as_current_span("Factorial calculation"):
             if n in self.cache:
