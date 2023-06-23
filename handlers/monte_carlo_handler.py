@@ -23,20 +23,15 @@ class MonteCarloHandler(TracedRequestHandler):
         self.executor = executor
 
     async def get(self):
-        with self._tracer.start_as_current_span("Get Monte Carlo Pi Estimate") as span:
-            input = self.get_argument("query")
+        input = self.get_argument("query")
 
-            n = int(input)
-            result = await self.run_request(n)
-            # result = self.monte_carlo_estimate(n)
+        n = int(input)
+        result = await self.run_request(n)
 
-            span.set_attribute("pi.output", str(result))
-            self.render("../html/monte_carlo_pi.html", n=n, result=result)
+        self.render("../html/monte_carlo_pi.html", n=n, result=result)
 
     async def run_request(self, n):
-        result = await IOLoop.current().run_in_executor(self.executor, 
-                                                        partial(monte_carlo_estimate,
-                                                                n))
+        result = await IOLoop.current().run_in_executor(
+            self.executor, partial(monte_carlo_estimate, n))
         print(result)
         return result
-

@@ -2,21 +2,17 @@
 
 A simple tornado based web application to understand the various components that come together
 
-#### Request handlers
+#### Request handler
 
-The two request handlers ```handlers/fibonacci_handler.py``` and ```handlers/factorial_handler.py``` handle two type of requests. 
-They handle requests to /fibonacci and /factorial respectively. 
-
-#### Tracing 
-
-The request paths are traced using opentelemetry tracing across different methods that are used to return the response
-
-#### Caching
-
-A rudimentary cache is used to store previously computed results for quick responses. This is a very barebones verison and ideally should have 
-a flushing mechanism and TTL.
+It has a GET request handler that executes a Monte Carlo simulation to estimate the value of Pi. This is a simple example program with one parameter, number of points "n" that controls how much time it takes to execute - ideal to control the computation time.  
 
 #### Asynchronous
 
-The FactorialHandler is a async, to make use to asynchronous functions and handle multiple concurrent requqets. 
+The RequestHandler is a async, to make use to asynchronous functions and handle multiple concurrent requqets. 
+
+#### Multiprocessing
+
+The requests are handled in a ProcessPoolExecutor that runs concurrent requests in different processes, to handle the requets in parallel. 
+
+Python doesn't support multithreading if the bottle-neck is computation, so multiprocessing is suitable for this. 
 
