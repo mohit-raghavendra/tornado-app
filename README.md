@@ -19,8 +19,6 @@ Python doesn't support multithreading if the bottle-neck is computation, so mult
 
 ### How to run
 
-<ol>
-    <li>Install requirements with `pip install -r requirements.txt`</li>
-    <li>Run the tornado server with `python3 tornado_app/main.py`</li>
-    <li>Navigate to localhost:8888 or execute `python3 make_requests.py`</li>
-</ol>  
+1. Install requirements with ```pip install -r requirements.txt```
+2. Run the tornado server with `python3 tornado_app/main.py`
+3. Navigate to localhost:8888 or execute `python3 make_requests.py`
