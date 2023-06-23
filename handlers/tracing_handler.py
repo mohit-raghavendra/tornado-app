@@ -9,4 +9,6 @@ class TracedRequestHandler(RequestHandler):
 
     def prepare(self):
         self._tracer = trace.get_tracer(__name__)
-        sys.stdout.write(f'\n\n{"*"*8}\nRequest stack trace\n{"*"*8}\n')
+        # sys.stdout.write(f'\n\n{"*"*8}\nRequest stack trace\n{"*"*8}\n')
+
+    
