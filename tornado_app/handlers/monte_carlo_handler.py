@@ -3,7 +3,7 @@ import random
 from functools import partial
 
 from tornado.ioloop import IOLoop
-from .tracing_handler import TracedRequestHandler
+from tornado_app.handlers.tracing_handler import TracedRequestHandler
 
 
 def monte_carlo_estimate(number_of_points):
