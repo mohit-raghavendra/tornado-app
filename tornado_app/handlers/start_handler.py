@@ -1,6 +1,5 @@
-from .tracing_handler import TracedRequestHandler
+import tornado
 
-
-class StartHandler(TracedRequestHandler):
+class StartHandler(tornado.web.RequestHandler):
     def get(self):
-        self.render("../html/start.html")
+        self.render("../html/start.html", n=0, result="")

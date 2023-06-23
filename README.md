@@ -16,3 +16,11 @@ The requests are handled in a ProcessPoolExecutor that runs concurrent requests 
 
 Python doesn't support multithreading if the bottle-neck is computation, so multiprocessing is suitable for this. 
 
+
+### How to run
+
+<ol>
+    <li>Install requirements with `pip install -r requirements.txt`</li>
+    <li>Run the tornado server with `python3 tornado_app/main.py`</li>
+    <li>Navigate to localhost:8888 or execute `python3 make_requests.py`</li>
+</ol>  
