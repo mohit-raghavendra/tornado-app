@@ -8,11 +8,12 @@ It has a GET request handler that executes a Monte Carlo simulation to estimate 
 
 #### Asynchronous
 
-The RequestHandler is a async, to make use to asynchronous functions and handle multiple concurrent requqets. 
+The RequestHandler is async, to handle multiple concurrent requests. 
 
 #### Multiprocessing
 
-The requests are handled in a ProcessPoolExecutor that runs concurrent requests in different processes, to handle the requets in parallel. 
+The requests are handled in a ProcessPoolExecutor that runs concurrent requests in different processes
+Thus concurrent requests are handled in parallel. 
 
 Python doesn't support multithreading if the bottle-neck is computation, so multiprocessing is suitable for this. 
 
