@@ -9,6 +9,7 @@ from handlers.start_handler import StartHandler
 num_workers = 3
 executor = ProcessPoolExecutor(num_workers)
 
+
 def make_app():
     return tornado.web.Application(
         [

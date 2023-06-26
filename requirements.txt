@@ -5,3 +5,4 @@ pyyaml
 redis
 requests
 tornado
+locust
